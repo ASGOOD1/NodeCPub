@@ -1,0 +1,51 @@
+---
+Checks: >
+  -*,
+  clang-analyzer-unix.API,
+  clang-analyzer-security.insecureAPI.strcpy,
+  cert-err33-c,
+  bugprone-posix-return,
+  bugprone-sizeof-expression,
+  clang-analyzer-core.NullDereference,
+  readability-magic-numbers,
+  clang-analyzer-core.uninitialized.Assign,
+  cert-env33-c,
+  clang-analyzer-unix.Vfork,
+  
+  concurrency-mt-unsafe,
+  clang-analyzer-alpha.unix.PthreadLock,
+  clang-analyzer-unix.BlockInCriticalSection,
+  cert-pos49-c,
+  cert-pos47-c,
+  bugprone-bad-signal-to-kill-thread,
+  clang-analyzer-security.insecureAPI.rand,
+  misc-redundant-expression,
+  bugprone-infinite-loop,
+  
+  bugprone-signal-handler,
+  cert-sig30-c,
+  cert-sig31-c,
+  cert-pos44-c,
+  
+  clang-analyzer-unix.Malloc,
+  clang-analyzer-core.VLASize,
+  bugprone-narrowing-conversions,
+  readability-non-const-parameter,
+  clang-analyzer-core.uninitialized.CapturedBlockVariable,
+  clang-analyzer-deadcode.DeadStores,
+  
+  clang-analyzer-unix.cstring.BadSizeArg,
+  cert-err30-c,
+  cert-str31-c,
+  cert-fio30-c,
+  clang-analyzer-optin.portability.UnixAPI,
+  bugprone-unhandled-self-assignment,
+  
+  performance-faster-string-find
+
+WarningsAsErrors: >
+  clang-analyzer-unix.BlockInCriticalSection,
+  bugprone-signal-handler,
+  cert-err33-c
+
+FormatStyle: none

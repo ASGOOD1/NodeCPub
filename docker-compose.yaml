@@ -1,0 +1,13 @@
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: antivirus_server
+    ports:
+      - "8080:8080"   
+      - "8081:8081"  
+      - "9000:9000"  
+    volumes:
+      - ./fce:/app/fce
+    restart: unless-stopped

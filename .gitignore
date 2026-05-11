@@ -1,0 +1,12 @@
+build/
+fce/
+.DS_Store
+1GB.bin
+100MB.bin
+downloaded_*
+SawX.mkv
+virus.exe
+malwaretest
+malwaretest.c
+viruses/*
+infected.bat
