@@ -105,7 +105,7 @@ int compute_signature(const char *filename, char *out_hash) {
     EVP_DigestFinal_ex(ctx, final_hash, &len);
 
     for (int i = 0; i < HEX_LENGTH/2; i++) {
-        snprintf(out_hash + i * 2, 3, "%02x", final_hash[i]);
+        (void)snprintf(out_hash + i * 2, 3, "%02x", final_hash[i]);
     }
     out_hash[HEX_LENGTH] = '\0';
 

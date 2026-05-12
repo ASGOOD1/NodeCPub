@@ -284,6 +284,7 @@ static void handle_web_request(int cfd, char *buffer, size_t n) {
                 const char *b = "{\"success\":false,\"message\":\"Invalid credentials\"}";
                 (void)snprintf(response, sizeof(response),
                             "HTTP/1.1 404 Not found\r\n"
+                            "Access-Control-Allow-Origin: *\r\n"
                             "Content-Type: application/json\r\n"
                             "Content-Length: %zu\r\n"
                             "Connection: close\r\n\r\n%s",
@@ -305,6 +306,7 @@ static void handle_web_request(int cfd, char *buffer, size_t n) {
                     (void)snprintf(response, sizeof(response),
                                 "HTTP/1.1 200 OK\r\n"
                                 "Content-Type: application/json\r\n"
+                                "Access-Control-Allow-Origin: *\r\n"
                                 "Content-Length: %zu\r\n"
                                 "%s"
                                 "Connection: close\r\n\r\n%s",
@@ -314,6 +316,7 @@ static void handle_web_request(int cfd, char *buffer, size_t n) {
                     (void)snprintf(response, sizeof(response),
                                 "HTTP/1.1 401 Unauthorized\r\n"
                                 "Content-Type: application/json\r\n"
+                                "Access-Control-Allow-Origin: *\r\n"
                                 "Content-Length: %zu\r\n"
                                 "Connection: close\r\n\r\n%s",
                                 strlen(b), b);
@@ -365,6 +368,7 @@ static void handle_web_request(int cfd, char *buffer, size_t n) {
                 (void)snprintf(response, sizeof(response),
                             "HTTP/1.1 404 Not found\r\n"
                             "Content-Type: application/json\r\n"
+                            "Access-Control-Allow-Origin: *\r\n"
                             "Content-Length: %zu\r\n"
                             "Connection: close\r\n\r\n%s",
                             strlen(b), b);
@@ -376,6 +380,7 @@ static void handle_web_request(int cfd, char *buffer, size_t n) {
                     (void)snprintf(response, sizeof(response),
                                 "HTTP/1.1 200 OK\r\n"
                                 "Content-Type: application/json\r\n"
+                                "Access-Control-Allow-Origin: *\r\n"
                                 "Content-Length: %zu\r\n"
                                 "Connection: close\r\n\r\n%s",
                                 strlen(b), b);
@@ -384,6 +389,7 @@ static void handle_web_request(int cfd, char *buffer, size_t n) {
                     (void)snprintf(response, sizeof(response),
                                 "HTTP/1.1 401 Unauthorized\r\n"
                                 "Content-Type: application/json\r\n"
+                                "Access-Control-Allow-Origin: *\r\n"
                                 "Content-Length: %zu\r\n"
                                 "Connection: close\r\n\r\n%s",
                                 strlen(b), b);
@@ -409,6 +415,7 @@ static void handle_web_request(int cfd, char *buffer, size_t n) {
             (void)snprintf(response, sizeof(response),
                      "HTTP/1.1 200 OK\r\n"
                      "Content-Type: application/json\r\n"
+                     "Access-Control-Allow-Origin: *\r\n"
                      "Content-Length: %zu\r\n\r\n%s",
                      strlen(body_tpl), body_tpl); // Parseaza raspunsul intreg
             (void)safe_write(cfd, response, strlen(response));  // Scrie raspunsul
@@ -523,6 +530,8 @@ static void handle_web_request(int cfd, char *buffer, size_t n) {
 
                     char entry_buf[STR_LENGTH * 2];
                     char *fileid = find_file_uuid(user_dbname, filename_tofind);
+                    printf("%s", fileid);
+                    (void)fflush(stdout);
                     int entry_len = snprintf(entry_buf, sizeof(entry_buf),
                         "%s{\"name\":\"%s\",\"size\":%ld,\"status\":\"%s\",\"id\":\"%s\"}",
                         first ? "" : ",", safe_name, (long)st.st_size, status, fileid); // Daca e primul fisier nu ii punem , in fata
